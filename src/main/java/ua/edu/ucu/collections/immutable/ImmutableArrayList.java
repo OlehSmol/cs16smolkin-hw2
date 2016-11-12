@@ -15,7 +15,6 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     public ImmutableArrayList add(Object e) {
-        //e.clone();
         return this.add(this.size, e);
     }
 
@@ -112,7 +111,13 @@ public class ImmutableArrayList implements ImmutableList {
 
     //перетворює колекцію до масиву обєктів
     public Object[] toArray() {
-        return this.array;
+        Object[] copyArray = new Object[this.size];
+
+        for(int i = 0; i< this.size; i++) {
+            copyArray[i] = this.array[i];
+        }
+
+        return copyArray;
     }
 
     @Override
