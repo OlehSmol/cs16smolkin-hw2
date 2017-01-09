@@ -24,7 +24,7 @@ public class ImmutableLinkedList implements ImmutableList{
             copyNode = new Node(originNode.getData(), Copy(index, c, originNode.getNext(), position - 1, operation));
         }
         else {
-            copyNode = operation.execute(c, originNode); //copyNode = new Node(e, originNode);
+            copyNode = operation.execute(c, originNode);
         }
 
         return copyNode;
