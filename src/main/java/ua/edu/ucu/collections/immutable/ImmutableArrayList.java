@@ -50,7 +50,7 @@ public class ImmutableArrayList implements ImmutableList {
             newArray[i] = c[j];
             j++;
         }
-        for(int i = index + c.length + 1; i < index; i++) {
+        for(int i = index + c.length; i < this.size + c.length; i++) {
             newArray[i] = this.array[i - c.length];
         }
 
@@ -78,7 +78,15 @@ public class ImmutableArrayList implements ImmutableList {
 
     //змінює значення елементу за індексом, та кидає виключну ситуацію, якщо індекс виходить за межі колекції
     public ImmutableArrayList set(int index, Object e) {
-        return new ImmutableArrayList();
+        Object[] newArray = new Object[this.size];
+        for(int i = 0; i < this.size; i++){
+            if(i + 1 == index){
+                newArray[i] = e;
+                continue;
+            }
+            newArray[i] = this.array[i];
+        }
+        return new ImmutableArrayList(newArray);
     }
 
     //шукає індекс елемента (повертає індекс першого який знайшов, або -1 у випадку відсутності)
@@ -125,7 +133,10 @@ public class ImmutableArrayList implements ImmutableList {
     public String toString() {
         String result = "";
         for(int i = 0; i < this.size; i++){
-            result += (this.array[i] + ", ");
+            result += this.array[i];
+            if(i < this.size - 1){
+                result += ", ";
+            }
         }
         return result;
     }

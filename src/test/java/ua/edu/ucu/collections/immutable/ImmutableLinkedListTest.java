@@ -122,10 +122,9 @@ public class ImmutableLinkedListTest {
     public void testClear() {
         ImmutableLinkedList list = new ImmutableLinkedList();
         list = list.add(new StringBuilder("a"));
-        StringBuilder a = (StringBuilder) list.get(0);
-        StringBuilder expResult = new StringBuilder(a);
-        a.setCharAt(0, 'b');
-        StringBuilder actualResult = (StringBuilder) list.get(0);
+        list = list.clear();
+        int actualResult = list.size();
+        int expResult = 0;
         assertEquals(expResult, actualResult);
     }
 
@@ -161,16 +160,5 @@ public class ImmutableLinkedListTest {
         list = list.add(2);
         list = list.add(3);
         list = list.add(5, 4);
-    }
-
-    public void testImmutable() {
-        ImmutableLinkedList list = new ImmutableLinkedList();
-        boolean expResult = false;
-        list = list.add(1);
-        list = list.add(2);
-        list = list.add(3);
-
-        boolean actualResult = list.isEmpty();
-        assertEquals(expResult, actualResult);
     }
 }
